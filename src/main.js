@@ -6,30 +6,36 @@ import './css/styles.css';
 
 $(document).ready(function () {
   let array = [];
-
   $("#getLetter").click(function () {
-    let userLetter = $("#letter").val();
+    let userLetter = ($("#letter").val()).toLowerCase();
     $("#letter").val("");
-    console.log(array);
     for (let i = 0; i < array.length; i++) {
-      console.log(userLetter);
-      if (array.includes(userLetter)) {
-        $("#array[0]").show();
+      if (array[i].includes(userLetter) === true) {
+        $(`#${[i]}`).show();
+        $("#letters").hide();
+      } else if (array.includes(userLetter) === false){
+        $("#letters").html(`The letter "${userLetter}" is not in the word. Try again!`);
       }
     }
+    $("#guessedLetters").append(`${userLetter}, `);
+  });
+
+  $("#show-answer").click(function () {
+    $(".card-text").show();
   });
 
   let promise = Dino.getWord();
   promise.then(function (response) {
     const body = JSON.parse(response);
-    let word = (body[0]).toString();
+    let word = ((body[0]).toString()).toLowerCase();
     let arr = word.split("");
-    array.push(arr);
+    for (let i=0; i<arr.length; i++) {
+      array.push(arr[i]);
+    }
     let htmlForWord = "";
     for (let i = 0; i < arr.length; i++) {
       htmlForWord += `<div class="card"><h3 class="card-text" id=${[i]}>${arr[i]}</h3></div>`;
     }
     $('#word').html(htmlForWord);
-    console.log(arr);
   });
 });

@@ -6,3 +6,7 @@
 .card-text {
   display: none;
 }
+
+button {
+  margin: 10px;
+}

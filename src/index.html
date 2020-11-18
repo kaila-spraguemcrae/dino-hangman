@@ -6,13 +6,16 @@
 </head>
 
 <body>
+  <div class="container">
   <label for="letter">Plese enter a letter:</label>
   <input id="letter" type="text">
-  <button class="btn-info" id="getLetter">Guess!</button>
-  <div class="container">
-    <div id="word">
-      <p class="newWord"></p>
-    </div>
+  <button class="btn btn-info" id="getLetter">Guess!</button>
+  
+    <div id="word"></div>
+    <p>These are the letters you have guessed: <span id="guessedLetters"></span></p>
+    <div id="letters"></div>
+  
+  <p class="btn btn-info" id="show-answer">Show Answer</p>
   </div>
   <!--container-->
 </body>
